@@ -57,6 +57,19 @@ def convert_toplevel_docstring(tokens):
                                     line='#')
                     # To next token
                     continue
+        elif token.type == tokenize.COMMENT:
+            text = token.string
+            if text.startswith('##'):
+                startline, startcol = token.start
+                if startcol == 0:
+                    fmt = '# <codecell>\n'.format(text)
+                    yield TokenInfo(type=tokenize.COMMENT,
+                                    start=(startline, startcol),
+                                    end=token.end,
+                                    string=fmt,
+                                    line='\n')
+                    # To next token
+                    continue
         # Return untouched
         yield token
 

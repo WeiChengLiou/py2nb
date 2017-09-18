@@ -24,12 +24,22 @@ def hello():
     print("hello")
 
 
+##
+def hello2():
+    """
+    This is a docstring
+    """
+    print("hello")
+
+
+##
 """
 ## Another Cell 1
 """
 
 
 def main():
+    ## It's a hello message
     hello()
 
 

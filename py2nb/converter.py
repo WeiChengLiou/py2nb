@@ -1,9 +1,6 @@
 from __future__ import absolute_import, division, print_function
 
-from IPython.nbformat.v3 import nbpy
-from IPython import nbformat as nbf
-
-from io import StringIO
+import nbformat as nb
 
 
 def convert(input_string, output_filename):
@@ -11,8 +8,8 @@ def convert(input_string, output_filename):
     Convert a preprocessed string object into notebook file
     """
     # Read using v3
-    with StringIO(input_string) as fin:
-        nb = nbpy.read(fin)
+    input = nb.v3.reads_py(input_string)
+    notebook = nb.convert(input, max(nb.versions))
     # Write using the most recent version
     with open(output_filename, 'w') as fout:
-        nbf.write(nb, fout, version=max(nbf.versions))
+        nb.write(notebook, fout)

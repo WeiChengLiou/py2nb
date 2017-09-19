@@ -60,3 +60,8 @@ String literals with triple quote at column zero are converted into a comment
 token with special ``<markdowncell>`` and ``<codecell>`` to feed into the python
 importer in IPython version 3.  The processed tokens are untokenized using the
 ``tokenize`` module so that untouched line looks exactly the same as the input.
+
+
+## Ammendments
+
+- 2017.09.19: Seperate different codecells with `##`.
